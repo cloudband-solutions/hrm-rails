@@ -13,6 +13,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'nested_form'
 gem 'paperclip'
+gem 'activeadmin', github: 'activeadmin'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

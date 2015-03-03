@@ -11,16 +11,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303030024) do
+ActiveRecord::Schema.define(version: 20150303095429) do
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+
+  create_table "deduction_graph_entries", force: :cascade do |t|
+    t.integer  "deduction_graph_id"
+    t.decimal  "min_compensation"
+    t.decimal  "max_compensation"
+    t.decimal  "salary_base"
+    t.decimal  "employee_contribution"
+    t.decimal  "employer_contribution"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "employee_compensation_contribution"
+  end
+
+  create_table "deduction_graphs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "deductions", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
     t.decimal  "amount"
     t.boolean  "is_percent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "deduction_graph_id"
   end
+
+  create_table "employee_type_deductions", id: false, force: :cascade do |t|
+    t.integer "employee_type_id"
+    t.integer "deduction_id"
+  end
+
+  add_index "employee_type_deductions", ["employee_type_id", "deduction_id"], name: "employee_type_deduction_index", unique: true
 
   create_table "employee_types", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150303030024) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.decimal  "base_salary"
+    t.decimal  "net_salary"
   end
 
   create_table "employees", force: :cascade do |t|
