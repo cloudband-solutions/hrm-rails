@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class="row">
+         <div class="col-md-6">
+            <b><%= @employee.last_name %> - <%= @employee.identification_number %></b>
+         </div>
+         <div class="col-md-6" style="text-align: right;">
+          <%= link_to edit_employee_path(@employee.id), :class => "btn btn-primary btn-xs" do %>
+              <span class="fa fa-pencil"></span> Edit Profile
+          <% end %>
+          <%= link_to employees_path, :class => "btn btn-warning btn-xs" do %>
+            <span class="fa fa-arrow-left"> </span> Back to List
+          <% end %>
+         </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding: 10px;">
+        <div class="col-md-2">
+          <%= image_tag "missing_standard.png" %>
+        </div>
+      </div>
+
+      <div class="row basic-info" style="padding: 10px;">
+       <div class="col-md-6">
+        <h4>Basic Information</h4>
+        <table class="table table-bordered">
+          <tr>
+            <th style="width: 100px;"><span class="fa fa-user"> </span> Name</th>
+            <td><%= @employee.first_name %> <%= @employee.middle_name %> <%= @employee.last_name %></td>
+          </tr>
+          <tr>
+            <th style="width: 100px;"><span class="fa fa-home"> </span> Address </th>
+            <td><%= @employee.address %></td>
+          </tr>
+          <tr>
+            <th style="width: 100px;"><span class="fa fa-birthday-cake"> </span> Birthday </th>
+            <td><%= @employee.date_of_birth %></td>
+          </tr>
+          <tr>
+            <th style="width: 100px;"><span class="fa fa-envelope-o"> </span> Email </th>
+            <td><%= @employee.email %></td>
+          </tr>
+          <tr>
+            <th style="width: 150px;"><span class="fa fa-phone"> </span> Home Number </th>
+            <td><%= @employee.mobile_number %></td>
+          </tr>
+          <tr>
+            <th style="width: 150px;"><span class="fa fa-phone"> </span> Mobile Number </th>
+            <td><%= @employee.mobile_number %></td>
+          </tr>
+        </table>
+       </div>
+       <div class="col-md-6">
+         <h4>Other Informtion</h4>
+         <table class="table table-bordered">
+          <tr>
+            <th style="width: 150px;"> SSS Number </th>
+            <td><%= @employee.sss_number %></td>
+          </tr>
+          <tr>
+            <th style="width: 150px;"> TIN Number </th>
+            <td><%= @employee.sss_number %></td>
+          </tr>
+         </table>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>

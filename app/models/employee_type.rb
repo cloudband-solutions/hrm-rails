@@ -1,4 +1,10 @@
 class EmployeeType < ActiveRecord::Base
+
+  validates :name, presence: true
+  validates :code, presence: true, uniqueness: true
+  validates :description, presence: true
+  validates :base_salary, presence: true, numericality: true
+
   has_many :employees
   has_many :employee_type_deductions
   has_many :deductions, through: :employee_type_deductions
@@ -25,4 +31,5 @@ class EmployeeType < ActiveRecord::Base
 
     self.net_salary = self.net_salary - d_amount
   end
+
 end

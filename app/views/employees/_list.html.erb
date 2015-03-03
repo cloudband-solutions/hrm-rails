@@ -1,0 +1,25 @@
+<div class="row">
+  <table class="table table-bordered tablew">
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>MOBILE NUMBER</th>
+      <th>ACTIONS</th>
+    </tr>
+    <% @employees.each do |employee| %>
+      <tr> 
+        <td><%= employee.identification_number %></td>
+        <td><%= employee.first_name %> <%= employee.middle_name %> <%= employee.last_name %> </td>
+        <td><%= employee.mobile_number %></td>
+        <td>
+          <%= link_to "Details", employee_path(employee.id), :class => "btn btn-info btn-xs" %>
+          <%= link_to "Edit", edit_employee_path(employee.id), :class => "btn btn-success btn-xs" %>
+          <%= link_to "Delete", employee,data: {:confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+ 
+
