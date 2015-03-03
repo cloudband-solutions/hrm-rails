@@ -6,4 +6,17 @@ class Employee < ActiveRecord::Base
       large: "250x250#" },
     default_url: ":attachment/missing_:style.png"
   validates_attachment_content_type :profile_picture, content_type: %w(image/jpeg image/jpg image/png image/bmp)
+
+  validates :first_name, presence:true
+  validates :middle_name, presence: true
+  validates :last_name, presence: true
+  validates :address, presence: true
+  validates :mobile_number, presence: true
+  validates :email, presence:true, uniqueness: true
+  validates :sss_number, presence: true, uniqueness: true
+  validates :tin_number, presence: true, uniqueness: true
+  validates :identification_number, presence: true, uniqueness: true
+  validates :date_of_birth, presence: true
+
+  belongs_to :employee_type
 end
