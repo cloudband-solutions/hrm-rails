@@ -1,17 +1,13 @@
-<div class="row">
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-md-6">
-          <b>List of Employees</b>
-        </div>
-        <div class="col-md-6" style="text-align: right;">
-          <%= link_to new_employee_path, :class => "btn btn-info btn-xs" do %>
-            <span class="fa fa-plus"> Add Employee </span>
-          <% end %>
-        </div>
-      </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    List of Employees
+    <div class="listHeaderActions">
+      <%= link_to new_employee_path, :class => "btn btn-default btn-xs" do %>
+        <span class="fa fa-plus"> Add Employee </span>
+      <% end %>
     </div>
+  </div>
+  <div class="panel-body">
     <div class="form">
       <%= render partial: "list" %>
     </div>
