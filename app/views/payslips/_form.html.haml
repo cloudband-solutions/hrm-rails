@@ -1,0 +1,17 @@
+= simple_form_for payslip, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } }, html: { multipart: true } do |f|
+  = f.association :employee, as: :hidden
+  = f.association :employee_type, as: :hidden
+  = f.input :paid_at, input_html: { class: "form-control date" }
+  = f.input :gross_amount
+
+  = f.simple_fields_for :payslip_deductions do |ff|
+    = ff.association :deduction, as: :hidden
+    = ff.input :amount, label: ff.object.deduction.name
+
+  .form-actions
+    = f.submit class: "btn btn-success" do
+      %span.fa.fa-times
+      Save
+    = link_to payslips_path, class: "btn btn-default" do
+      %span.fa.fa-times
+      Cancel

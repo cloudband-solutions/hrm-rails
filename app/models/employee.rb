@@ -20,5 +20,11 @@ class Employee < ActiveRecord::Base
   validates :employee_type, presence: true
 
   belongs_to :employee_type
+
+  has_many :payslips
+
+  def to_s
+    "#{first_name} #{middle_name} #{last_name}"
+  end
 end
 

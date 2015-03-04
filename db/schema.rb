@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303095429) do
+ActiveRecord::Schema.define(version: 20150304124555) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -110,6 +110,28 @@ ActiveRecord::Schema.define(version: 20150303095429) do
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
     t.string   "address"
+  end
+
+  create_table "payslip_deductions", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "payslip_id"
+    t.integer  "deduction_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "payslips", force: :cascade do |t|
+    t.decimal  "gross_amount"
+    t.decimal  "net_amount"
+    t.date     "paid_at"
+    t.integer  "employee_id"
+    t.string   "status"
+    t.string   "reference_number"
+    t.integer  "employee_type_id"
+    t.text     "notes"
+    t.text     "particular"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -16,6 +16,7 @@ gem 'paperclip'
 gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem 'haml'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'kaminari'
 group :development, :test do

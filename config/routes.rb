@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   root to: "pages#index"
 
   resources :employees
+  resources :payslips
+  post "payslips/new_ps", to: "payslips#new_ps", as: :new_ps
 end

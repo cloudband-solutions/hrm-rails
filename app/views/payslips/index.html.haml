@@ -1,0 +1,13 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        Payslips
+        .listHeaderActions
+          = link_to "#", class: "btn btn-xs btn-default", "data-toggle" => "modal", "data-target" => "#generatePayslipModal" do
+            %span.fa.fa-plus
+            Generate Payslip
+      .panel-body
+        = render "list"
+
+= render partial: "generate_payslip_modal"

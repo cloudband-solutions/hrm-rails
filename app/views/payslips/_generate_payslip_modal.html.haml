@@ -1,0 +1,21 @@
+#generatePayslipModal.modal.fade{ tabindex: "-1", role: "dialog", "aria-labelledby" => "generatePayslipModal", "aria-hidden" => "true" }
+  = simple_form_for :payslip, url: new_ps_path, method: :post do |f|
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", "aria-hidden" => "true"}
+          %h4 Generate Payslip
+        .modal-body
+          .row
+            .col-md-12
+              = f.input :employee, as: :select, collection: Employee.all, input_html: { class: "form-control" }
+              = f.input :month, collection: %w(January February March April May June July August September October November December), selected: Date.today.strftime("%B"), input_html: { class: "form-control" }
+              = f.input :year, collection: (Time.now.year - 3..Time.now.year + 2).to_a, selected: Date.today.strftime("%Y"), input_html: { class: "form-control" }
+        .modal-footer
+          = f.submit "Generate Payslip", class: "btn btn-primary"
+          %button.btn.btn-default{"data-dismiss" => "modal"}
+            Close
+
+:javascript
+  $(document).ready(function() {
+  });

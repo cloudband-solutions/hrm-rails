@@ -24,6 +24,11 @@
                   <span class="fa fa-users"></span> EMPLOYEES
                 <% end %>
             </li>
+            <li class="<%= params[:controller] == 'payslips' && params[:action] ? 'active' : '' %>">
+                <%= link_to payslips_path, class: "#{ params[:controller] == 'payslips' and params[:action] ? 'active' : '' }" do %>
+                  <span class="fa fa-file"></span> PAYSLIPS
+                <% end %>
+            </li>
           </ul> 
           <div class="navbar-form navbar-right">
             <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to log-out?" }, class: "btn btn-danger" %>

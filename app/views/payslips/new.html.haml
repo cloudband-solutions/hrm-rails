@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        New Payslip - #{@payslip.employee}
+        .listHeaderActions
+          = link_to payslips_path, class: "btn btn-xs btn-default" do
+            %span.fa.fa-arrow-left
+            Back to Payslips
+      .panel-body
+        = render partial: "form", locals: { payslip: @payslip }
