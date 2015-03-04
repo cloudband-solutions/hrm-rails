@@ -1,6 +1,9 @@
 <%= simple_form_for @employee, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } }, html: { multipart: true } do |f| %>
 
   <h4 class="basic-info-h4"> Basic Information </h4>
+  <%= image_tag f.object.profile_picture.url(:form) %>
+  <%= f.input :profile_picture, as: :file %>
+  <%= f.association :employee_type %>
   <%= f.input :first_name %>  
   <%= f.input :middle_name %>
   <%= f.input :last_name %>
