@@ -58,8 +58,12 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit :class => "btn btn-success" %>
+    <%= f.submit :class => "btn btn-success" do %>
+      <span class="fa fa-times"></span>
+      Save
+    <% end %>
     <%= link_to employees_path, class: "btn btn-default" do %>
+      <span class="fa fa-times"></span>
       Cancel  
     <% end %>
   </div>

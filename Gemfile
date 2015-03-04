@@ -17,6 +17,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'kaminari'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

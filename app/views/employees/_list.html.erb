@@ -1,20 +1,39 @@
-<table class="table table-bordered tablew">
-  <tr>
-    <th>ID</th>
-    <th>NAME</th>
-    <th>MOBILE NUMBER</th>
-    <th>ACTIONS</th>
-  </tr>
-  <% @employees.each do |employee| %>
-    <tr> 
-      <td><%= employee.identification_number %></td>
-      <td><%= employee.first_name %> <%= employee.middle_name %> <%= employee.last_name %> </td>
-      <td><%= employee.mobile_number %></td>
+<%= form_tag employees_path, method: "GET" do %>
+  <table class="table table-bordered tablew">
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>EMPLOYEE TYPE</th>
+      <th width="20%">ACTIONS</th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= text_field_tag :q, @q, placeholder: "Name or ID", class: "form-control" %>
+      </td>
       <td>
-        <%= link_to "Details", employee_path(employee.id), :class => "btn btn-info btn-xs" %>
-        <%= link_to "Edit", edit_employee_path(employee.id), :class => "btn btn-success btn-xs" %>
-        <%= link_to "Delete", employee,data: {:confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger btn-xs" %>
+        <%= select_tag :employee_type, options_from_collection_for_select(EmployeeType.all, :id, :name, @employee_type.try(:id)), class: "form-control select-select2", prompt: "-- SELECT --" %>
+      </td>
+      <td>
+        <%= submit_tag "Filter", class: "btn btn-info btn-block" %>
       </td>
     </tr>
-  <% end %>
-</table>
+    <% @employees.each do |employee| %>
+      <tr> 
+        <td><%= employee.identification_number %></td>
+        <td><%= employee.first_name %> <%= employee.middle_name %> <%= employee.last_name %> </td>
+        <td><%= employee.employee_type %></td>
+        <td>
+          <%= link_to employee_path(employee.id), :class => "btn btn-default btn-xs" do %>
+            <span class="fa fa-search"></span>
+            Details
+          <% end %>
+          <%= link_to edit_employee_path(employee.id), :class => "btn btn-default btn-xs" do %>
+            <span class="fa fa-pencil"></span>
+            Edit
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= paginate @employees %>
+<% end %>

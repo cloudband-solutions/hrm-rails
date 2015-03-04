@@ -32,4 +32,8 @@ class EmployeeType < ActiveRecord::Base
     self.net_salary = self.net_salary - d_amount
   end
 
+  def to_s
+    name
+  end
+
 end

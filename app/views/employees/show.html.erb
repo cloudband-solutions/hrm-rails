@@ -1,17 +1,21 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="panel panel-success">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <div class="row">
          <div class="col-md-6">
-            <b><%= @employee.last_name %> - <%= @employee.identification_number %></b>
+            <b><%= @employee.last_name %> - <%= @employee.identification_number %> - <%= @employee.employee_type.name %></b>
          </div>
          <div class="col-md-6" style="text-align: right;">
-          <%= link_to edit_employee_path(@employee.id), :class => "btn btn-primary btn-xs" do %>
+          <%= link_to edit_employee_path(@employee.id), :class => "btn btn-default btn-xs" do %>
               <span class="fa fa-pencil"></span> Edit Profile
           <% end %>
-          <%= link_to employees_path, :class => "btn btn-warning btn-xs" do %>
+          <%= link_to employees_path, :class => "btn btn-default btn-xs" do %>
             <span class="fa fa-arrow-left"> </span> Back to List
+          <% end %>
+          <%= link_to employee_path(@employee), data: {:confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger btn-xs" do %>
+            <span class="fa fa-times"></span>
+            Delete
           <% end %>
          </div>
         </div>
@@ -54,7 +58,7 @@
         </table>
        </div>
        <div class="col-md-6">
-         <h4>Other Informtion</h4>
+         <h4>Other Information</h4>
          <table class="table table-bordered">
           <tr>
             <th style="width: 150px;"> SSS Number </th>

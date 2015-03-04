@@ -239,6 +239,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   nested_form
   paperclip
   rails (= 4.2.0)

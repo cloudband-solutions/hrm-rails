@@ -1,7 +1,23 @@
 class EmployeesController < ApplicationController
 
   def index
-    @employees = Employee.all
+    @employees = Employee.select("*")
+
+    if params[:q].present?
+      @q = params[:q]
+
+      @q.split(' ').each do |q|
+        @employees = @employees.where("first_name LIKE :q OR middle_name LIKE :q OR last_name LIKE :q OR identification_number LIKE :q", q: "%#{@q}%")
+      end
+    end
+
+    if params[:employee_type].present?
+      @employee_type = EmployeeType.find(params[:employee_type])
+
+      @employees = @employees.where(employee_type_id: @employee_type.id)
+    end
+
+    @employees = @employees.page(params[:page]).per(20)
   end
 
   def new
