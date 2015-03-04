@@ -17,6 +17,8 @@ class Employee < ActiveRecord::Base
   validates :tin_number, presence: true, uniqueness: true
   validates :identification_number, presence: true, uniqueness: true
   validates :date_of_birth, presence: true
+  validates :employee_type, presence: true
 
   belongs_to :employee_type
 end
+
