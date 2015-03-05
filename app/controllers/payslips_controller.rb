@@ -18,6 +18,39 @@ class PayslipsController < ApplicationController
     @payslip = PayslipService.build_payslip(@employee)
   end
 
+  def edit
+    @payslip = Payslip.find(params[:id])
+    @employee = @payslip.employee
+  end
+
+  def create
+    @payslip = Payslip.new(payslip_params)
+
+    if @payslip.save
+      flash[:success] = "Successfully created payslip"
+      redirect_to payslip_path(@payslip)
+    else
+      flash[:error] = "Invalid"
+      render :new
+    end
+  end
+
+  def update
+    @payslip = Payslip.find(params[:id])
+
+    if @payslip.update(payslip_params)
+      flash[:success] = "Successfully updated payslip"
+      redirect_to payslip_path(@payslip)
+    else
+      flash[:error] = "Invalid"
+      render :edit
+    end
+  end
+
+  def show
+    @payslip = Payslip.find(params[:id])
+  end
+
   def payslip_params
     params.require(:payslip).permit!
   end

@@ -1,0 +1,17 @@
+%table.table.table-bordered.tablew
+  %tr
+    %th Employee
+    %th Gross Amount
+    %th Net Amount
+    %th Status
+    %th Actions
+  - @payslips.each do |payslip|
+    %tr
+      %td= link_to payslip.employee, employee_path(payslip.employee)
+      %td= number_to_currency(payslip.gross_amount, unit: "P")
+      %td= number_to_currency(payslip.net_amount, unit: "P")
+      %td= payslip.status
+      %td
+        = link_to payslip_path(payslip), class: "btn btn-default btn-xs" do
+          %span.fa.fa-search
+          Details

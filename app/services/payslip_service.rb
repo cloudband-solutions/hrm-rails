@@ -20,6 +20,9 @@ class PayslipService
       payslip_deductions << PayslipDeduction.new(amount: d_amount, deduction: deduction)
     end
 
-    payslip = Payslip.new(employee: employee, gross_amount: gross_amount, payslip_deductions: payslip_deductions, employee_type: employee_type)
+    # TODO: Compute for date
+    paid_at = Time.now
+
+    payslip = Payslip.new(employee: employee, gross_amount: gross_amount, payslip_deductions: payslip_deductions, employee_type: employee_type, paid_at: paid_at)
   end
 end

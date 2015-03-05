@@ -242,6 +242,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
   kaminari
   nested_form
   paperclip

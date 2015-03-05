@@ -22,6 +22,16 @@ class Payslip < ActiveRecord::Base
   has_many :payslip_deductions
   accepts_nested_attributes_for :payslip_deductions
 
+  def panel_status
+    if self.status == "pending"
+      return "danger"
+    elsif self.status == "approved"
+      return "success"
+    else
+      return "default"
+    end
+  end
+
   def load_defaults
     if self.new_record?
       self.status = "pending"

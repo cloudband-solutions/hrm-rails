@@ -1,12 +1,33 @@
 = simple_form_for payslip, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } }, html: { multipart: true } do |f|
   = f.association :employee, as: :hidden
   = f.association :employee_type, as: :hidden
-  = f.input :paid_at, input_html: { class: "form-control date" }
-  = f.input :gross_amount
-
-  = f.simple_fields_for :payslip_deductions do |ff|
-    = ff.association :deduction, as: :hidden
-    = ff.input :amount, label: ff.object.deduction.name
+  .row
+    .col-md-6
+      %h4
+        %span.fa.fa-money
+        Basic Pay
+      %hr
+      = f.input :paid_at, as: :string, input_html: { class: "form-control datepick", value: "#{f.object.paid_at.strftime("%Y-%m-%d")}" }
+      = f.input :gross_amount
+    .col-md-6
+      %h4
+        %span.fa.fa-arrow-down
+        Deductions
+      %hr
+      = f.simple_fields_for :payslip_deductions do |ff|
+        = ff.association :deduction, as: :hidden
+        = ff.input :amount, label: ff.object.deduction.name
+  .row
+    .col-md-12
+      %h4
+        %span.fa.fa-info
+        Other Information
+      %hr
+  .row
+    .col-md-6
+      = f.input :particular
+    .col-md-6
+      = f.input :notes
 
   .form-actions
     = f.submit class: "btn btn-success" do

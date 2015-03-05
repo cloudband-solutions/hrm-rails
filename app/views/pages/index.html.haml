@@ -1,0 +1,22 @@
+.row
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Number of Employees
+      .panel-body
+        %span.fa.fa-user
+        = "#{Employee.count} people"
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Pending Payslips
+      .panel-body
+        %span.fa.fa-money
+        = number_to_currency(Payslip.where(status: "pending").sum(:gross_amount), unit: "P")
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Paid Amounts
+      .panel-body
+        %span.fa.fa-money
+        = number_to_currency(Payslip.where(status: "approved").sum(:gross_amount), unit: "P")

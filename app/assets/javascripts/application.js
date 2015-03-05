@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+var initDatePicker = function() {
+  $(".datepick").datepicker({ dateFormat: "yy-mm-dd" });
+};
+
+$(document).on("ready page:load", function() {
+  initDatePicker();
+});

@@ -1,0 +1,66 @@
+.panel.panel-default
+  .panel-heading
+    Payslip for #{@payslip.employee} - #{@payslip.status}
+    .listHeaderActions
+      - if @payslip.status == "pending"
+        = link_to "#", class: "btn btn-success btn-xs", data: { confirm: "Are you sure?" } do
+          %span.fa.fa-check
+          Approve
+        = link_to edit_payslip_path(@payslip), class: "btn btn-default btn-xs" do
+          %span.fa.fa-pencil
+          Edit
+      = link_to payslips_path, class: "btn btn-default btn-xs" do
+        %span.fa.fa-arrow-left
+        Back to Payslips
+      = link_to payslip_path(@payslip), class: "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } do
+        %span.fa.fa-times
+        Delete
+  .panel-body
+    .row
+      .col-md-6
+        %h4
+          %span.fa.fa-money
+          Payslip Details
+        %table.table.table-bordered
+          %tr
+            %th{width: "25%"}
+              %span.fa.fa-user
+              Employee
+            %td= link_to @payslip.employee, employee_path(@payslip.employee), target: "_blank"
+          %tr
+            %th
+              %span.fa.fa-dollar
+              Base Salary
+            %td= number_to_currency(@payslip.employee_type.base_salary, unit: "P")
+          %tr
+            %th
+              %span.fa.fa-plus-square-o
+              Gross Amount
+            %td= number_to_currency(@payslip.gross_amount, unit: "P")
+          %tr
+            %th
+              %span.fa.fa-minus-square-o
+              Net Amount
+            %td= number_to_currency(@payslip.net_amount, unit: "P")
+      .col-md-6
+        %h4
+          %span.fa.fa-arrow-down
+          Deductions
+        %table.table.table-bordered
+          - @payslip.payslip_deductions.each do |payslip_deduction|
+            %tr
+              %th{width: "40%"}
+                %span.fa.fa-minus-square
+                = payslip_deduction.deduction.name
+              %td= number_to_currency(payslip_deduction.amount, unit: "P")
+    .row
+      .col-md-6
+        %h4
+          %span.fa.fa-file
+          Particular
+        = @payslip.particular
+      .col-md-6
+        %h4
+          %span.fa.fa-file
+          Notes
+        = @payslip.notes
