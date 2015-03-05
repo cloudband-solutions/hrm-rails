@@ -1,22 +1,28 @@
-.row
+.row.margintop
   .col-md-4
-    .panel.panel-default
-      .panel-heading
-        Number of Employees
-      .panel-body
-        %span.fa.fa-user
-        = "#{Employee.count} people"
+    .dashtitleblue
+      Number of Employees
+    .dashbodyblue
+      .row
+        .col-md-6
+          %span.fa.fa-user
+        .col-md-6
+          = "#{Employee.count}"
   .col-md-4
-    .panel.panel-default
-      .panel-heading
-        Pending Payslips
-      .panel-body
-        %span.fa.fa-money
-        = number_to_currency(Payslip.where(status: "pending").sum(:gross_amount), unit: "P")
+    .dashtitleblue
+      Pending Payslips
+    .dashbodygreen
+      .row
+        .col-md-6
+          %span.fa.fa-money
+        .col-md-6
+          = number_to_currency(Payslip.where(status: "pending").sum(:gross_amount), unit: "P")
   .col-md-4
-    .panel.panel-default
-      .panel-heading
-        Paid Amounts
-      .panel-body
-        %span.fa.fa-money
-        = number_to_currency(Payslip.where(status: "approved").sum(:gross_amount), unit: "P")
+    .dashtitleblue
+      Paid Amounts
+    .dashbodyorange
+      .row 
+        .col-md-6
+          %span.fa.fa-money
+        .col-md-6
+          = number_to_currency(Payslip.where(status: "approved").sum(:gross_amount), unit: "P")
